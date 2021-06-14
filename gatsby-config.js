@@ -5,6 +5,10 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-material-ui`,
+    },
+    `gatsby-plugin-layout`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {
