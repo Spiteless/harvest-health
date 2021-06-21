@@ -1,35 +1,49 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
+import { makeStyles } from '@material-ui/core/styles';
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-);
+import { Container, Grid } from '@material-ui/core';
+
+import DrawerFeature from '../features/drawerFeature';
+
+const useStyles = makeStyles(theme => ({
+  header: {
+    background: theme.palette.light.main,
+    marginBottom: `1.45rem`,
+  },
+  home: {
+    margin: 0,
+    border: '5px black solid',
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    margin: `0 auto`,
+    maxWidth: 960,
+    padding: `1.45rem 1.0875rem`,
+    justifyContent: 'space-between',
+  },
+  link: {
+    color: theme.palette.dark.main,
+    textDecoration: `none`,
+  },
+}));
+export default function Header({ siteTitle }) {
+  const classes = useStyles();
+  return (
+    <header className={classes.header}>
+      <Container className={classes.container}>
+        <h1 classNames={classes.home}>
+          <Link to="/" className={classes.link}>
+            {siteTitle}
+          </Link>
+        </h1>
+        <DrawerFeature anchor="right" />
+      </Container>
+    </header>
+  );
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
@@ -38,5 +52,3 @@ Header.propTypes = {
 Header.defaultProps = {
   siteTitle: ``,
 };
-
-export default Header;

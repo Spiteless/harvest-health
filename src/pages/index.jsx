@@ -4,26 +4,26 @@ import { StaticImage } from 'gatsby-plugin-image';
 import { Button } from '@material-ui/core';
 
 import Seo from '../components/Seo';
+import HeroFeature from '../features/heroFeature';
+import ImageFeature from '../features/imageFeature';
+import NewsletterFeature from '../features/newsletterFeature';
+import TextFeature from '../features/textFeature';
+
+const seoProperties = {
+  'og:site_name': 'Harvest Health & Fitness',
+  'og:title': 'Harvest Health & Fitness',
+  'og:description':
+    'Harvest Health & Fitness specializes in training for all. We offer one on one in-person training and a wide variety of premier virtual training sessions.',
+  'og:image': 'null',
+};
 
 const IndexPage = () => (
   <>
     <Seo title="Home" />
-    <h1>Hi people</h1>
-    <Button variant="outlined" color="primary" >Button!</Button>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <StaticImage
-      src="../images/gatsby-astronaut.png"
-      width={300}
-      quality={95}
-      formats={['AUTO', 'WEBP', 'AVIF']}
-      alt="A Gatsby astronaut"
-      style={{ marginBottom: `1.45rem` }}
-    />
-    <p>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-    </p>
+    <HeroFeature />
+    <ImageFeature />
+    <NewsletterFeature />
+    <TextFeature />
   </>
 );
 
