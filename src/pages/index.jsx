@@ -21,9 +21,9 @@ const IndexPage = () => (
   <>
     <Seo title="Home" />
     <HeroFeature />
+    <TextFeature />
     <ImageFeature />
     <NewsletterFeature />
-    <TextFeature />
   </>
 );
 
