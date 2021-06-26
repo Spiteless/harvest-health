@@ -1,10 +1,12 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
+
+import ServicesFeature from '../features/servicesFeature';
 
 export default function ServicesPage() {
   return (
-    <Container>
-      <h1>ServicesPage</h1>
-    </Container>
+    <Box>
+      <ServicesFeature />
+    </Box>
   );
 }

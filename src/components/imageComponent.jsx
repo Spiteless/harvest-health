@@ -10,50 +10,51 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
+  root: ({rootMaxWidth, rootHeight}) => ({
+    maxWidth: rootMaxWidth,
+    width: '100%',
+    height: rootHeight,
+  }),
+  media: ({ mediaPadding }) => ({
     height: 0,
-    padding: '25%',
-  },
-  mediaAuto: {
-    height: '100%',
-  },
+    padding: mediaPadding,
+  }),
 });
 
 export default function ImageFeature({
   cardTitle,
   cardContent,
   cardButtons,
-  height = 200,
-  imgSrc
+  imgSrc,
+  mediaPadding = '50%',
+  rootMaxWidth = 300,
+  rootHeight = 300,
 }) {
-  const classes = useStyles();
+  const props = { mediaPadding, rootMaxWidth, rootHeight};
+  const sx = useStyles(props);
 
   return (
-    <Card
-      className={classes.root}
-      component={Paper}
-    >
+    <Card className={sx.root} component={Paper}>
       <CardActionArea>
         <CardMedia
-          className={classes.media}
+          className={sx.media}
           image={imgSrc}
           title="Contemplative Reptile"
         />
-        {(cardTitle || cardContent) && <CardContent>
-          {cardTitle && (
-            <Typography gutterB ottom variant="h5" component="h2">
-              {cardTitle}
-            </Typography>
-          )}
-          {cardContent && (
-            <Typography variant="body2" color="textSecondary" component="p">
-              {cardContent}
-            </Typography>
-          )}
-        </CardContent>}
+        {(cardTitle || cardContent) && (
+          <CardContent>
+            {cardTitle && (
+              <Typography gutterB ottom variant="h5" component="h2">
+                {cardTitle}
+              </Typography>
+            )}
+            {cardContent && (
+              <Typography variant="body2" color="textSecondary" component="p">
+                {cardContent}
+              </Typography>
+            )}
+          </CardContent>
+        )}
       </CardActionArea>
       {cardButtons && (
         <CardActions>

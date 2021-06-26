@@ -9,6 +9,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     flexDirection: 'column',
     maxWidth: 1000,
+    marginTop: theme.spacing(10),
     '& h2': {
       color: theme.palette.primary.main,
       fontSize: '2em',
@@ -42,9 +43,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function TextFeature() {
-  const classes = useStyles();
+  const sx = useStyles();
   return (
-    <Container className={classes.root}>
+    <Container className={sx.root}>
       <h2>Welcome to Harvest Health & Fitness</h2>
       <p>
         Harvest Health & Fitness specializes in training for all. We offer one
@@ -55,17 +56,11 @@ export default function TextFeature() {
         Mom - Personal Trainer - Virtual Coach - Health and Fitness Enthusiast
       </h3>
       <ul>
-        <li className={classes.listItem}>
-          {/* <ListItemIcon className={classes.listItemIcon}>
-            <FiberManualRecordIcon className={classes.icon} />
-          </ListItemIcon> */}
+        <li className={sx.listItem}>
           These workouts are for EVERYONE! Whether you need a jumpstart or want
           to take it to the next level.
         </li>
-        <li className={classes.listItem}>
-          {/* <ListItemIcon className={classes.listItemIcon}>
-            <FiberManualRecordIcon className={classes.icon} />
-          </ListItemIcon> */}
+        <li className={sx.listItem}>
           Our coaches are here to modify the workout as needed. The goal is for
           the experience to be challenging yet doable for all fitness levels.
         </li>

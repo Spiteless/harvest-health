@@ -7,7 +7,7 @@ import Seo from '../components/Seo';
 import HeroFeature from '../features/heroFeature';
 import ImageFeature from '../features/imageFeature';
 import NewsletterFeature from '../features/newsletterFeature';
-import TextFeature from '../features/textFeature';
+import TextFeature from '../features/indexTextFeature';
 
 const seoProperties = {
   'og:site_name': 'Harvest Health & Fitness',

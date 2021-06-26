@@ -9,23 +9,25 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
-import banner from '../assets/images/mainBanner.png';
-import bannerCover from '../assets/images/harvestTransparent.png';
-
 const useStyles = makeStyles(theme => ({
   root: {
     position: 'relative',
     height: 'auto',
     boxShadow: 'none',
   },
-  imageBox: {
+  imageBox: ({bannerImg, height}) => ({
     position: 'relative',
-    backgroundImage: `url(${banner})`,
-    height: 350,
+    backgroundImage: `url(${bannerImg})`,
+    height,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-  },
+    margin: "0 0 0 0",
+  }),
   absolute: {
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
     position: 'absolute',
     zIndex: 100,
     height: '100%',
@@ -34,6 +36,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 0,
   },
   buyButton: {
     marginTop: theme.spacing(3),
@@ -48,22 +51,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function HeroComponent({ innerText }) {
-  const classes = useStyles();
+export default function HeroComponent({ children, heroImage, height=350 }) {
+  const sx = useStyles({bannerImg: heroImage, height});
 
   return (
-    <Card className={classes.root}>
-      <CardContent className={classes.imageBox}>
-        <div className={classes.absolute}>
-          <img src={bannerCover} alt="A dinosaur" placeholder="blurred" />
-          {innerText && (
-            <Typography gutterBottom variant="h5" component="h2">
-              {innerText}
-            </Typography>
-          )}
-          <Button className={classes.buyButton} size="large">
-            Start Now!
-          </Button>
+    <Card className={sx.root}>
+      <CardContent className={sx.imageBox}>
+        <div className={sx.absolute}>
+          { children }
         </div>
       </CardContent>
     </Card>

@@ -6,7 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { Container, Grid } from '@material-ui/core';
 
-import DrawerFeature from '../features/drawerFeature';
+import DrawerFeature from '../features/drawerFeature'
+
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -14,6 +15,13 @@ const useStyles = makeStyles(theme => ({
     marginBottom: `1.45rem`,
     marginTop: 0,
     height: 80,
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    '& > *': {
+      '&:hover': {
+        color: theme.palette.primary.main,
+      },
+    },
   },
   home: {
     margin: 0,
@@ -34,12 +42,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 export default function Header({ siteTitle }) {
-  const classes = useStyles();
+  const sx = useStyles();
   return (
-    <header className={classes.header}>
-      <Container className={classes.container}>
-        <h1 classNames={classes.home}>
-          <Link to="/" className={classes.link}>
+    <header className={sx.header}>
+      <Container className={sx.container}>
+        <h1 classNames={sx.home}>
+          <Link to="/" className={sx.link}>
             {siteTitle}
           </Link>
         </h1>
@@ -49,7 +57,7 @@ export default function Header({ siteTitle }) {
           alt="Hero Banner"
           style={{
             width: 77,
-            height: 70
+            height: 70,
           }}
         />
         <DrawerFeature anchor="right" />

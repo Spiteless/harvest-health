@@ -43,7 +43,7 @@ const MenuItems = [
 ];
 
 export default function DrawerFeature({ anchor }) {
-  const classes = useStyles();
+  const sx = useStyles();
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -64,8 +64,8 @@ export default function DrawerFeature({ anchor }) {
 
   const list = anchor => (
     <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+      className={clsx(sx.list, {
+        [sx.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
@@ -76,7 +76,7 @@ export default function DrawerFeature({ anchor }) {
           if (component) return component;
           return (
             <ListItem button key={text}>
-              <Link to={url} className={classes.link}>
+              <Link to={url} className={sx.link}>
                 <ListItemText primary={text} />
               </Link>
             </ListItem>
@@ -89,7 +89,7 @@ export default function DrawerFeature({ anchor }) {
   return (
     <>
       <Button onClick={toggleDrawer(anchor, true)}>
-        <MenuIcon className={classes.menu} />
+        <MenuIcon className={sx.menu} />
       </Button>
       <Drawer
         anchor={anchor}

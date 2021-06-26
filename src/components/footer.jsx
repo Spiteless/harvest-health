@@ -4,8 +4,14 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     root: {
+        marginTop: '30vh',
         display: "flex",
-        justifyContent: "center"
+        justifyContent: "center",
+        alignItems: 'center',
+        marginBottom: '10vh',
+        color: theme.palette.primary.main,
+        
+        fontSize: "1.2em",
     }
 }))
 
