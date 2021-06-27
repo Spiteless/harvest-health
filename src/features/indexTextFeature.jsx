@@ -1,6 +1,11 @@
 import React from 'react';
-import { Container, List, ListItem, ListItemIcon } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import {
+  Container,
+  List,
+  ListItem,
+  ListItemIcon,
+  makeStyles,
+} from '@material-ui/core';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 const useStyles = makeStyles(theme => ({
@@ -38,8 +43,8 @@ const useStyles = makeStyles(theme => ({
     width: 10,
   },
   listItem: {
-      listStyle: "disc outside !important"
-  }
+    listStyle: 'disc outside !important',
+  },
 }));
 
 export default function TextFeature() {

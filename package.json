@@ -46,6 +46,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "cleandev": "gatsby clean && gatsby develop -p 8001",
+    "buildserve": "gatsby build && gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "repository": {
