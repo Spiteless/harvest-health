@@ -106,17 +106,22 @@ export default function ContactUsFeature() {
         <Container className={sx.formRoot}>
           <h2>Ask Megan</h2>
           <div className={sx.singleRow}>
-            <FormControl className={sx.form} style={{ width: 175, paddingRight: 8 }}>
+            <FormControl
+              className={sx.form}
+              style={{ width: 175, paddingRight: 8 }}
+            >
               <TextField
                 required
                 label="First Name"
                 variant="outlined"
                 name="firstName"
                 onChange={handleInput}
-                
               />
             </FormControl>
-            <FormControl className={sx.form} style={{ width: 175, paddingLeft: 8  }}>
+            <FormControl
+              className={sx.form}
+              style={{ width: 175, paddingLeft: 8 }}
+            >
               <TextField
                 required
                 label="Last Name"
@@ -146,21 +151,6 @@ export default function ContactUsFeature() {
               onChange={handleInput}
             />
           </FormControl>
-          <FormControlLabel
-            required
-            name="markatingConsent"
-            control={
-              <Checkbox
-                checked={state.markatingConsent}
-                color="primary"
-                required
-                name="markatingConsent"
-              />
-            }
-            onClick={handleInput}
-            type="boomBox"
-            label="I consent to receiving marketing emails."
-          />
           <Button className={sx.subscribeButton} type="submit">
             Submit
           </Button>
