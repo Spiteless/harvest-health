@@ -3,16 +3,18 @@ import { Grid, Box, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3),
     '& > h3': {
       fontSize: '1.3em',
       color: theme.palette.primary.main,
       fontWeight: 800,
     },
     '& ul': {
-        listStyle: 'none',
-        padding: 0,
-        fontSize: '1.15em'
-    }
+      listStyle: 'none',
+      padding: 0,
+      fontSize: '1.15em',
+    },
   },
   primaryHighlight: {
     color: theme.palette.primary.main,
@@ -27,7 +29,9 @@ export default function ServiceFeatureText() {
   return (
     <div className={sx.root}>
       <h3>
-        <span className={sx.blackHighlight}>Founder/Owner - Megan Anderson</span>{' '}
+        <span className={sx.blackHighlight}>
+          Founder/Owner - Megan Anderson
+        </span>{' '}
         <span className={sx.primaryHighlight}>NASM-CPT | CPR/AED</span>
       </h3>
       <h3>Studio Personal Training</h3>

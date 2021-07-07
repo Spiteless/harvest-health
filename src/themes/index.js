@@ -18,6 +18,14 @@ const theme = createMuiTheme({
       main: grey[50]
     }
   },
-});
+  utils: {
+    backgroundFocus: ({ratio, bg, box = 50}) => (
+      `${((bg + (50 - box) / ratio - 50) * (ratio / (ratio - 1)) + 50) * 1}%`
+    )
+  }
+}
+);
+
+
 
 export default theme;

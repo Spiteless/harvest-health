@@ -41,11 +41,6 @@ export default function HeroFeature() {
     <Container style={{ margin: 0, padding: 0 }}>
       <HeroComponent heroImage={banner}>
         <img src={imageOverlay} alt="" placeholder="blurred" />
-        {/* {innerText && (
-            <Typography gutterBottom variant="h5" component="h2">
-              {innerText}
-            </Typography>
-          )} */}
         <Button className={sx.buyButton} size="large">
           Start Now!
         </Button>

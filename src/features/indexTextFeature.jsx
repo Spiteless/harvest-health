@@ -1,12 +1,11 @@
 import React from 'react';
 import {
   Container,
+  makeStyles,
+  Typography,
   List,
   ListItem,
-  ListItemIcon,
-  makeStyles,
 } from '@material-ui/core';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,6 +31,9 @@ const useStyles = makeStyles(theme => ({
       fontSize: '1.1em',
       listStyleType: 'circle',
     },
+    '& > *': {
+      margin: theme.spacing(0,0,1,0)
+    }
   },
   listItemIcon: {
     display: 'flex',
@@ -51,29 +53,29 @@ export default function TextFeature() {
   const sx = useStyles();
   return (
     <Container className={sx.root}>
-      <h2>Welcome to Harvest Health & Fitness</h2>
-      <p>
+      <Typography variant="h2">Welcome to Harvest Health & Fitness</Typography>
+      <Typography variant="body1">
         Harvest Health & Fitness specializes in training for all. We offer one
         on one in-person training and a wide variety of premier virtual training
         sessions.
-      </p>
-      <h3>
+      </Typography>
+      <Typography variant="h3">
         Mom - Personal Trainer - Virtual Coach - Health and Fitness Enthusiast
-      </h3>
-      <ul>
-        <li className={sx.listItem}>
+      </Typography>
+      <List>
+        <ListItem className={sx.listItem}>
           These workouts are for EVERYONE! Whether you need a jumpstart or want
           to take it to the next level.
-        </li>
-        <li className={sx.listItem}>
+        </ListItem>
+        <ListItem className={sx.listItem}>
           Our coaches are here to modify the workout as needed. The goal is for
           the experience to be challenging yet doable for all fitness levels.
-        </li>
-      </ul>
+        </ListItem>
+      </List>
 
-      <h3>
+      <Typography variant="h3">
         We nurture what we want to grow and we reap what we choose to sow.
-      </h3>
+      </Typography>
     </Container>
   );
 }

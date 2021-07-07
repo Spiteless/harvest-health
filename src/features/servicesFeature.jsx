@@ -24,6 +24,13 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
+  box: {
+    paddingTop: 60,
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 }));
 
 export default function ServicesFeature() {
@@ -31,22 +38,13 @@ export default function ServicesFeature() {
 
   return (
     <div className={sx.root}>
-      <HeroComponent height={250} heroImage={bannerImg}>
+      <HeroComponent height={185} heroImage={bannerImg}>
         <div className={sx.inner}>
-          <h2 className={sx.root}>Services</h2>
+          <h2>Services</h2>
         </div>
       </HeroComponent>
 
-      <Box
-        style={{
-          paddingTop: 60,
-          width: '100%',
-          
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
+      <Box className={sx.box}>
         <Grid container style={{ maxWidth: 960 }}>
           <Grid item xs={12} sm={9} lg={6}>
             <ServicesFeatureText />
@@ -64,7 +62,6 @@ export default function ServicesFeature() {
           >
             <Box display={{ xs: 'none', sm: 'none', md: 'block' }}>
               <img
-                
                 src={image1}
                 alt=""
                 placeholder="blurred"
@@ -74,7 +71,6 @@ export default function ServicesFeature() {
           </Grid>
         </Grid>
       </Box>
-
     </div>
   );
 }

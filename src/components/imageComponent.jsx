@@ -9,17 +9,18 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles({
-  root: ({rootMaxWidth, rootHeight}) => ({
+const useStyles = makeStyles(theme => ({
+  root: ({ rootMaxWidth, rootHeight }) => ({
     maxWidth: rootMaxWidth,
     width: '100%',
     height: rootHeight,
   }),
-  media: ({ mediaPadding }) => ({
+  media: ({ mediaPadding, bgFocus }) => ({
     height: 0,
     padding: mediaPadding,
+    backgroundPositionX: theme.utils.backgroundFocus(bgFocus),
   }),
-});
+}));
 
 export default function ImageFeature({
   cardTitle,
@@ -29,8 +30,10 @@ export default function ImageFeature({
   mediaPadding = '50%',
   rootMaxWidth = 300,
   rootHeight = 300,
+  bgFocus,
 }) {
-  const props = { mediaPadding, rootMaxWidth, rootHeight};
+  console.log(bgFocus)
+  const props = { mediaPadding, rootMaxWidth, rootHeight, bgFocus };
   const sx = useStyles(props);
 
   return (

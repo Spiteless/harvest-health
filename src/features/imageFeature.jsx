@@ -7,6 +7,7 @@ import image1 from '../assets/images/kettlebell.jpg';
 import image2 from '../assets/images/olympicLift.jpg';
 import image3 from '../assets/images/rowMachine.jpg';
 
+
 const useStyles = makeStyles(theme => ({
   root: () => ({
     display: 'flex',
@@ -18,16 +19,34 @@ const useStyles = makeStyles(theme => ({
     '& > *': {
       margin: theme.spacing(1),
     },
+    '& > *:nth-child(0)': {
+      backgroundPositionX: theme.utils.backgroundFocus(25, 75),
+      border: '3px red solid',
+    },
   }),
 }));
 
 export default function ImageFeature() {
-  const images = [image1, image2, image3];
+  const imageData = [
+    {img: image1, ratio: 50, bg: 50},
+    {img: image2, ratio: 25, bg: 75},
+    {img: image3, ratio: 25, bg: 75},
+  ];
   const sx = useStyles();
   return (
     <div className={sx.root}>
-      {images.map((img, i) => (
-        <ImageComponent rootHeight={250} rootMaxWidth={300} mediaPadding={`50%`} imgSrc={img} key={i} />
+      {imageData.map((img, i) => (
+        <ImageComponent
+          rootHeight={250}
+          rootMaxWidth={300}
+          mediaPadding="50%"
+          imgSrc={img.img}
+          key={i}
+          bgFocus={{
+            ratio: img.ratio,
+            bg: img.bg
+          }}
+        />
       ))}
     </div>
   );

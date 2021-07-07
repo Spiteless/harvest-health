@@ -1,10 +1,11 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
+import MyJourneyFeature from '../features/myJourneyFeature';
 
 export default function MyJourneyPage() {
   return (
-    <Container>
-      <h1>MyJourneyPage</h1>
-    </Container>    
+    <div styles={{ width: '100%' }}>
+      
+      <MyJourneyFeature/>
+    </ div>    
   );
 }

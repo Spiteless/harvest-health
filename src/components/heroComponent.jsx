@@ -15,13 +15,13 @@ const useStyles = makeStyles(theme => ({
     height: 'auto',
     boxShadow: 'none',
   },
-  imageBox: ({bannerImg, height}) => ({
+  imageBox: ({ bannerImg, height }) => ({
     position: 'relative',
     backgroundImage: `url(${bannerImg})`,
     height,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    margin: "0 0 0 0",
+    margin: '0 0 0 0',
   }),
   absolute: {
     top: 0,
@@ -37,6 +37,8 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 0,
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3),
   },
   buyButton: {
     marginTop: theme.spacing(3),
@@ -51,15 +53,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function HeroComponent({ children, heroImage, height=350 }) {
-  const sx = useStyles({bannerImg: heroImage, height});
+export default function HeroComponent({ children, heroImage, height = 350 }) {
+  const sx = useStyles({ bannerImg: heroImage, height });
 
   return (
     <Card className={sx.root}>
       <CardContent className={sx.imageBox}>
-        <div className={sx.absolute}>
-          { children }
-        </div>
+        <div className={sx.absolute}>{children}</div>
       </CardContent>
     </Card>
   );
