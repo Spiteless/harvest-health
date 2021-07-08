@@ -16,7 +16,7 @@ import {
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
-  root: {
+  rootInput: {
     margin: 0,
     padding: 0,
     paddingLeft: 0,
@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     maxWidth: 500,
-    marginTop: theme.spacing(10),
+    marginTop: theme.spacing(4),
     '& h2': {
       color: theme.palette.secondary.main,
       fontSize: '2em',
@@ -163,7 +163,7 @@ export default function ContactUsFeature() {
   const handleSubmit = event => {};
 
   return (
-    <div className={sx.root}>
+    <div className={sx.rootInput}>
       <form action="" name="questinairre">
         <Container className={sx.formRoot}>
           <h2>Personal Training</h2>

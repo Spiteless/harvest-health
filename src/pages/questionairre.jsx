@@ -1,10 +1,12 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 
-export default function QuestionairrePage() {
+import QuestionairreFeature from '../features/questionairreFeature';
+
+export default function ContactUsPage() {
   return (
-    <Container>
-      <h1>QuestionairrePage</h1>
-    </Container>    
+    <Container style={{ padding: 0 }}>
+      <QuestionairreFeature />
+    </Container>
   );
 }

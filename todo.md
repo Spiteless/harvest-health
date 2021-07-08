@@ -1,10 +1,10 @@
 # Todo
 
-## My Journey
-    - create my journey page
-
 ## Questionaire
     - create questionaire page
+    - properly configure netlify form stuff
+
+## Contact Us
     - properly configure netlify form stuff
 
 ## Services

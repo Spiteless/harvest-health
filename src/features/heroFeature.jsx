@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Button, makeStyles } from '@material-ui/core';
-
+import { Link } from 'gatsby';
 import HeroComponent from '../components/heroComponent';
 
 import banner from '../assets/images/mainBanner.png';
@@ -32,6 +32,11 @@ const useStyles = makeStyles(theme => ({
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     fontWeight: 800,
+    textDecoration: 'none',
+    "& a": {
+      textDecoration: 'none',
+      color: theme.palette.common.white
+    }
   },
 }));
 
@@ -42,7 +47,7 @@ export default function HeroFeature() {
       <HeroComponent heroImage={banner}>
         <img src={imageOverlay} alt="" placeholder="blurred" />
         <Button className={sx.buyButton} size="large">
-          Start Now!
+          <Link to="/questionairre">Start Now!</Link>
         </Button>
       </HeroComponent>
     </Container>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
 
-import Header from '../components/header';
+import Header from '../components/header/header';
 import Footer from '../components/footer';
 import theme from '../themes';
 
@@ -9,7 +9,7 @@ function index({ children }) {
   return (
     <ThemeProvider theme={theme}>    
       <CssBaseline />
-      <Header siteTitle="Harvest" />
+      <Header siteTitle="Harvest Health" />
       {children}
       <Footer />
     </ThemeProvider>

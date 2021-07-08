@@ -40,6 +40,8 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 960,
     dislpay: 'flex',
     flexDirection: 'column',
+    paddingBotton: theme.spacing(5),
+    marginBotton: theme.spacing(5),
   },
   float: {
     float: 'left',
@@ -62,7 +64,7 @@ export default function MyJourneyFeature() {
 
   return (
     <div className={sx.root}>
-      <HeroComponent heroImage={bannerUpper} height={250}>
+      <HeroComponent heroImage={bannerUpper} height={185}>
         <div className={sx.inner}>
           <h2>My Journey</h2>
         </div>
@@ -122,10 +124,9 @@ export default function MyJourneyFeature() {
           I look forward to helping you plant the right seeds, grow in the right
           environment, and reap the reward you deserve!
         </Typography>
-        <Typography paragraph>​- Megan</Typography>
-
-        <HeroComponent heroImage={bannerLower} />
+        <Typography paragraph style={{marginBottom: 50}}>​- Megan</Typography>
       </Container>
+      <HeroComponent heroImage={bannerLower} height={280} />
     </div>
   );
 }

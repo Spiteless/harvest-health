@@ -15,8 +15,9 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import menuItems from './header.data'
 
-const useStyles = makeStyles( theme => ({
+const useStyles = makeStyles(theme => ({
   list: {
     width: 250,
   },
@@ -24,13 +25,12 @@ const useStyles = makeStyles( theme => ({
     width: 'auto',
   },
   menu: {
-    color: theme.palette.dark.main
+    color: theme.palette.dark.main,
   },
   link: {
     textDecoration: 'none',
-    color: theme.palette.dark.main
-  }
-
+    color: theme.palette.dark.main,
+  },
 }));
 
 const MenuItems = [
@@ -38,11 +38,11 @@ const MenuItems = [
   { text: 'Services', url: '/services' },
   { text: 'My Journey', url: '/my-journey' },
   { text: 'Contact Us', url: '/contact-us' },
-  { component: <Divider /> },
+  { component: <Divider />, text: 'divider1' },
   { text: 'Questionairre', url: '/questionairre' },
 ];
 
-export default function DrawerFeature({ anchor }) {
+export default function DrawerFeature({ anchor, childClasses }) {
   const sx = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -72,14 +72,14 @@ export default function DrawerFeature({ anchor }) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {MenuItems.map( ({text, url, component}) => {
-          if (component) return component;
+        {menuItems.map(({ text, url, type }) => {
+          if (type === 'divider') return <Divider />;
           return (
-            <ListItem button key={text}>
-              <Link to={url} className={sx.link}>
+            <Link to={url} key={text} className={sx.link}>
+              <ListItem button >
                 <ListItemText primary={text} />
-              </Link>
-            </ListItem>
+              </ListItem>
+            </Link>
           );
         })}
       </List>
@@ -88,7 +88,7 @@ export default function DrawerFeature({ anchor }) {
 
   return (
     <>
-      <Button onClick={toggleDrawer(anchor, true)}>
+      <Button className={`${childClasses}`} onClick={toggleDrawer(anchor, true)}>
         <MenuIcon className={sx.menu} />
       </Button>
       <Drawer
