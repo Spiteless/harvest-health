@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 
-import QuestionairreFeature from '../features/questionairreFeature';
+import QuestionairreFeature from '@features/QuestionairreFeature';
 
 export default function ContactUsPage() {
   return (

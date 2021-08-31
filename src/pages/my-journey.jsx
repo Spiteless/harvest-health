@@ -1,5 +1,5 @@
 import React from 'react';
-import MyJourneyFeature from '../features/myJourneyFeature';
+import MyJourneyFeature from '@features/MyJourneyFeature';
 
 export default function MyJourneyPage() {
   return (

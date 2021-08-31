@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import HeroFeature from '../features/heroFeature';
-import ImageFeature from '../features/imageFeature';
-import NewsletterFeature from '../features/newsletterFeature';
-import TextFeature from '../features/indexTextFeature';
+import HeroFeature from '@features/HeroFeature';
+import ImageFeature from '@features/ImageFeature';
+import NewsletterFeature from '@features/NewsletterFeature';
+import TextFeature from '@features/IndexTextFeature';
 
 // const seoProperties = {
 //   'og:site_name': 'Harvest Health & Fitness',
