@@ -8,5 +8,14 @@
     "plugin:import/warnings",
     "plugin:jsx-a11y/recommended",
     "prettier"
-  ]
+  ],
+  "settings": {
+    "import/resolver": {
+      "alias": [
+        ["@components", "./src/components"]
+        ["@features", "./src/features"]
+        ["@images", "./src/assets/images"]
+      ]
+    }
+  }
 }

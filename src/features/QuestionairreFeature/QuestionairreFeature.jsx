@@ -1,9 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 
-import HeroComponent from '../components/heroComponent';
-import QuestionairreFitnessFeature from './questionairreFeatureInput';
-import bannerImg from '../assets/images/orangeBlue.jpg';
+import HeroComponent from '@components/HeroComponent';
+import QuestionairreFitnessFeature from '@features/QuestionairreFeatureInput';
+import bannerImg from '@images/orangeBlue.jpg';
 
 const useStyles = makeStyles(theme => ({
   root: {

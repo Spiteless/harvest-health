@@ -9,8 +9,8 @@ import {
   Button,
 } from '@material-ui/core';
 
-import HeroComponent from '../components/heroComponent';
-import bannerImg from '../assets/images/mountainSnowYoga.jpg';
+import HeroComponent from '@components/HeroComponent';
+import bannerImg from '@images/mountainSnowYoga.jpg';
 
 const useStyles = makeStyles(theme => ({
   root: {

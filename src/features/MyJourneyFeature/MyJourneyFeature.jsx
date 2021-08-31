@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container, Typography, makeStyles } from '@material-ui/core';
-import ImageComponent from '../components/imageComponent';
-import HeroComponent from '../components/heroComponent';
 
-import myJourneyImage from '../assets/images/meganAnderson.jpg';
-import bannerUpper from '../assets/images/redFlowers.jpg';
-import bannerLower from '../assets/images/logoSplashDark.jpeg';
+import ImageComponent from '@components/ImageComponent';
+import HeroComponent from '@components/HeroComponent';
+import myJourneyImage from '@images/meganAnderson.jpg';
+import bannerUpper from '@images/redFlowers.jpg';
+import bannerLower from '@images/logoSplashDark.jpeg';
 
 const useStyles = makeStyles(theme => ({
   root: {

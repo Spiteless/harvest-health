@@ -1,8 +1,8 @@
 import React from 'react';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
 
-import Header from '../components/header/header';
-import Footer from '../components/footer';
+import Header from '@components/Header';
+import Footer from '@components/Footer';
 import theme from '../themes';
 
 function index({ children }) {
