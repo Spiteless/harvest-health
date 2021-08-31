@@ -1,4 +1,3 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core';
 
 import ImageComponent from '@components/ImageComponent';
