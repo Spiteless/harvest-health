@@ -4,4 +4,6 @@
 
 Small business website built with Gatsby and Material-UI. Deployed on netlify.com, demo site at:
 
-[harvesthealth.netlify.app](harvesthealth.netlify.app)
+[Harvest Health](https://harvesthealth.netlify.app/)
+
+https://harvesthealth.netlify.app/
