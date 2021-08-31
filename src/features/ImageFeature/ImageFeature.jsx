@@ -2,9 +2,9 @@ import { makeStyles } from '@material-ui/core';
 
 import ImageComponent from '@components/ImageComponent';
 
-import image1 from '../assets/images/kettlebell.jpg';
-import image2 from '../assets/images/olympicLift.jpg';
-import image3 from '../assets/images/rowMachine.jpg';
+import image1 from '@images/kettlebell.jpg';
+import image2 from '@images/olympicLift.jpg';
+import image3 from '@images/rowMachine.jpg';
 
 
 const useStyles = makeStyles(theme => ({

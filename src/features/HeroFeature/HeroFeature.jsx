@@ -3,8 +3,8 @@ import { Container, Button, makeStyles } from '@material-ui/core';
 import { Link } from 'gatsby';
 import HeroComponent from '@components/HeroComponent';
 
-import banner from '../assets/images/mainBanner.png';
-import imageOverlay from '../assets/images/harvestTransparent.png';
+import banner from '@images/mainBanner.png';
+import imageOverlay from '@images/harvestTransparent.png';
 
 const useStyles = makeStyles(theme => ({
   root: {

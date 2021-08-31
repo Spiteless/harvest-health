@@ -1,10 +1,10 @@
 import React from 'react';
 import { makeStyles, Grid, Box } from '@material-ui/core';
 
-import HeroComponent from '../../components/heroComponent';
-import ServicesFeatureText from '../servicesFeatureText';
-import bannerImg from '../assets/images/sunsetYoga.jpg';
-import image1 from '../assets/images/classImage.png';
+import HeroComponent from '@components/HeroComponent';
+import ServicesFeatureText from '@features/ServicesFeatureText'
+import bannerImg from '@images/sunsetYoga.jpg';
+import image1 from '@images/classImage.png';
 
 const useStyles = makeStyles(theme => ({
   root: {
