@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     flexDirection: 'column',
     maxWidth: 1000,
-    marginTop: theme.spacing(10),
+    marginTop: theme.spacing(12),
     '& h2': {
       color: theme.palette.primary.main,
       fontSize: '2em',

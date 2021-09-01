@@ -1,54 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  container: {
-    // display: 'flex',
-    // flexWrap: 'wrap',
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    flex: '1 0 auto',
-    margin: theme.spacing(1),
-  },
-}));
+const useStyles = makeStyles(theme => ({}));
 
-function BreakpointOnly(props) {
-  const classes = useStyles();
-  const { width } = "derp";
+function DisplayBox({ children, breakpoint }) {
+  const display = {};
+  for (let i = 400; i < 3001; i += 50) {
+    display[`px${i}`] = 'none';
+  }
+  display[breakpoint] = 'block';
+
+  return <Box display={display}>{children}</Box>;
+}
+
+function BreakpointOnly({ children, breakpoint }) {
+  const breakpoints = [];
+  for (let i = 400; i < 3001; i += 50) {
+    breakpoints.push(`px${i}`);
+  }
+  const sx = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Typography variant="subtitle1">Current width: {width}</Typography>
-      <div className={classes.container}>
-        <Hidden only={["xs","sm","md","lg"]}>
-          <Paper className={classes.paper}>XL only</Paper>
-        </Hidden>
-        <Hidden only={["xs","sm","md"]}>
-          <Paper className={classes.paper}>LG and XL</Paper>
-        </Hidden>
-        <Hidden only={["xs","sm"]}>
-          <Paper className={classes.paper}>MD, LG, XL</Paper>
-        </Hidden>
-        <Hidden only={["xs"]}>
-          <Paper className={classes.paper}>SM, MD, LG, XL</Paper>
-        </Hidden>
-        <Hidden only={["xl","lg","md","sm","xs"]}>
-          <Paper className={classes.paper}>Hidden on all viewports</Paper>
-        </Hidden>
-      </div>
-    </div>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      width="100vw"
+      heigh="100vh"
+      fontSize={64}
+    >
+      {breakpoints.map(breakpoint => (
+        <DisplayBox breakpoint={breakpoint}>{breakpoint}</DisplayBox>
+      ))}
+    </Box>
   );
 }
 
-export default (BreakpointOnly);
+export default BreakpointOnly;

@@ -23,6 +23,9 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
+  noTopMargin: {
+    marginTop: 0
+  }
 }));
 
 export default function ContactUsFeature() {
@@ -32,7 +35,7 @@ export default function ContactUsFeature() {
     <div className={sx.root}>
       <HeroComponent height={185} heroImage={bannerImg}>
         <div className={sx.inner}>
-          <h2 className={sx.heading}>Health Questionairre</h2>
+          <h2 className={`${sx.heading}`}>Health Questionairre</h2>
         </div>
       </HeroComponent>
       <QuestionairreFitnessFeature />

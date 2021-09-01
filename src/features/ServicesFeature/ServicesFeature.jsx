@@ -15,6 +15,13 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 0,
     '& h2': { color: theme.palette.common.white, fontSize: '2em' },
   },
+  box: {
+    marginTop: theme.spacing(12),
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   inner: {
     maxWidth: 960,
     height: '100%',
@@ -23,13 +30,6 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-  },
-  box: {
-    paddingTop: 60,
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 }));
 
