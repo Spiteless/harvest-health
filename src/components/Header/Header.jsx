@@ -20,8 +20,9 @@ import {
   Box,
 } from '@material-ui/core';
 
-import NavDrawer from './NavDrawer';
-import NavLink from './NavLink';
+import NavDrawer from './NavDrawer/NavDrawer';
+// import WrappedLink from '@components/WrappedLink/WrappedLink';
+import WrappedLink from '@components/WrappedLink';
 import menuItems from '../../assets/data/header.json';
 import { CheckBox } from '@material-ui/icons';
 
@@ -123,14 +124,14 @@ export default function Header({ siteTitle }) {
 
   const links = (
     <>
-      <NavLink to="/" className={`${sx.somethings} ${sx.hide690Down}`} text="Home" />
-      <NavLink to="/services" className={`${sx.somethings} ${sx.hide690Down}`} text="Services" />
-      <NavLink
+      <WrappedLink to="/" className={`${sx.somethings} ${sx.hide690Down}`} text="Home" />
+      <WrappedLink to="/services" className={`${sx.somethings} ${sx.hide690Down}`} text="Services" />
+      <WrappedLink
         to="/my-journey"
         text="My Journey"
         className={`${sx.somethings} ${sx.hide690Down}`}
       />
-      <NavLink
+      <WrappedLink
         to="/contact-us"
         text="Contact Us"
         className={`${sx.somethings} ${sx.hide690Down}`}
@@ -140,7 +141,7 @@ export default function Header({ siteTitle }) {
         className={`${sx.hide800Down} ${sx.divider}`}
         flexItem
       />
-      <NavLink
+      <WrappedLink
         to="/questionairre"
         text="Questionairre"
         className={`${sx.somethings} ${sx.hide800Down}`}
