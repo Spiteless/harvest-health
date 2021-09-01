@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     maxWidth: 500,
     color: theme.palette.primary.main,
-    marginTop: theme.spacing(10),
+    marginTop: theme.spacing(12),
     '& h2': {
       color: theme.palette.secondary.main,
       fontSize: '2em',
@@ -68,6 +68,10 @@ const useStyles = makeStyles(theme => ({
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     fontWeight: 800,
+  },
+  noTopMargin: {
+    marginTop: 0,
+    paddingTop: 0,
   },
 }));
 
@@ -104,7 +108,7 @@ export default function ContactUsFeature() {
       </HeroComponent>
       <form action="" name="contactUs">
         <Container className={sx.formRoot}>
-          <h2>Ask Megan</h2>
+          <h2 className={sx.noTopMargin}>Ask Megan</h2>
           <div className={sx.singleRow}>
             <FormControl
               className={sx.form}

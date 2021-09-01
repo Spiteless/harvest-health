@@ -22,13 +22,17 @@ const useStyles = makeStyles(theme => ({
   blackHighlight: {
     color: theme.palette.common.black,
   },
+  noTopMargin: {
+    marginTop: 0
+  }
+  
 }));
 
 export default function ServiceFeatureText() {
   const sx = useStyles();
   return (
     <div className={sx.root}>
-      <h3>
+      <h3 className={sx.noTopMargin}>
         <span className={sx.blackHighlight}>
           Founder/Owner - Megan Anderson
         </span>{' '}

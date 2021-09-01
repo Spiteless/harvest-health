@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-start',
   },
   box: {
-    paddingTop: 60,
+    marginTop: theme.spacing(12),
     maxWidth: 960,
     dislpay: 'flex',
     flexDirection: 'column',

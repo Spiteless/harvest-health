@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     maxWidth: 500,
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(12),
     '& h2': {
       color: theme.palette.secondary.main,
       fontSize: '2em',
@@ -71,6 +71,9 @@ const useStyles = makeStyles(theme => ({
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     fontWeight: 800,
   },
+  noTopMargin: {
+    marginTop: 0
+  }
 }));
 
 const healthHistory = [
@@ -166,7 +169,7 @@ export default function ContactUsFeature() {
     <div className={sx.rootInput}>
       <form action="" name="questinairre">
         <Container className={sx.formRoot}>
-          <h2>Personal Training</h2>
+          <h2 className={sx.noTopMargin}>Personal Training</h2>
           <div className={sx.singleRow}>
             <FormControl
               className={sx.form}
