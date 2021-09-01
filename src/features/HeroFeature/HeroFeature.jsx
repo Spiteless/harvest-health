@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Button, makeStyles } from '@material-ui/core';
 import { Link } from 'gatsby';
+
 import HeroComponent from '@components/HeroComponent';
 
 import banner from '@images/mainBanner.png';
