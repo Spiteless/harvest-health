@@ -57,9 +57,15 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(0, 1),
     },
   },
-  px800Down: {
+  hide800Down: {
     display: 'none',
     [theme.breakpoints.up(800)]: {
+      display: 'block',
+    },
+  },
+  hide690Down: {
+    display: 'none',
+    [theme.breakpoints.up(690)]: {
       display: 'block',
     },
   },
@@ -94,7 +100,7 @@ export default function Header({ siteTitle }) {
 
   const logo = (
     <>
-      <Box className={sx.logoLg}>
+      <Box className={sx.logoLgg}>
         <StaticImage
           src="../../assets/images/harvestTransparent.png"
           quality={95}
@@ -103,7 +109,7 @@ export default function Header({ siteTitle }) {
           width={448 * 0.6}
         />
       </Box>
-      <Box className={sx.logoSm}>
+      {/* <Box className={sx.logoSm}>
         <StaticImage
           src="../../assets/images/logoMedium.png"
           quality={95}
@@ -111,33 +117,33 @@ export default function Header({ siteTitle }) {
           height={52}
           width={72}
         />
-      </Box>
+      </Box> */}
     </>
   );
 
   const links = (
     <>
-      <NavLink to="/" className={`${sx.somethings}`} text="Home" />
-      <NavLink to="/services" className={`${sx.somethings}`} text="Services" />
+      <NavLink to="/" className={`${sx.somethings} ${sx.hide690Down}`} text="Home" />
+      <NavLink to="/services" className={`${sx.somethings} ${sx.hide690Down}`} text="Services" />
       <NavLink
         to="/my-journey"
         text="My Journey"
-        className={`${sx.somethings} ${sx.hideSm1}`}
+        className={`${sx.somethings} ${sx.hide690Down}`}
       />
       <NavLink
         to="/contact-us"
         text="Contact Us"
-        className={`${sx.somethings} ${sx.hideSm1}`}
+        className={`${sx.somethings} ${sx.hide690Down}`}
       />
       <Divider
         orientation="vertical"
-        className={`${sx.px800Down} ${sx.divider}`}
+        className={`${sx.hide800Down} ${sx.divider}`}
         flexItem
       />
       <NavLink
         to="/questionairre"
         text="Questionairre"
-        className={`${sx.somethings} ${sx.px800Down}`}
+        className={`${sx.somethings} ${sx.hide800Down}`}
       />
       <Box className={sx.drawer}>
         <NavDrawer anchor="right" />
