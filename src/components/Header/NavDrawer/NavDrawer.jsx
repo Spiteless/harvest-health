@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import { Link as GatsbyLink } from 'gatsby';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Drawer,
@@ -14,11 +13,12 @@ import {
   Link,
 } from '@material-ui/core';
 
+import WrappedLink from '@components/WrappedLink';
 import MenuIcon from '@material-ui/icons/Menu';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
-import menuItems from '../../assets/data/header.json';
+import menuItems from '../../../assets/data/header.json';
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -65,7 +65,7 @@ export default function DrawerFeature({ anchor }) {
     toggleDrawer(true, event);
   };
 
-  const LinksList = ({ anchor }) => (
+  const DrawerContent = ({ anchor }) => (
     <div
       className={clsx(sx.list, {
         [sx.fullList]: anchor === 'top' || anchor === 'bottom',
@@ -78,23 +78,23 @@ export default function DrawerFeature({ anchor }) {
         {menuItems.map(({ text, url, divider }, index) => {
           if (divider) return <Divider key={index.toString()} />;
           return (
-            <Link
+            <WrappedLink
               to={url}
               key={index.toString()}
               className={sx.link}
-              component={GatsbyLink}
+              
             >
               <ListItem
                 button
                 onClick={event => {
                   toggleDrawer(false, event);
                 }}
-                component={GatsbyLink}
+                
                 key={index.toString()}
               >
                 <ListItemText primary={text} />
               </ListItem>
-            </Link>
+            </WrappedLink>
           );
         })}
       </List>
@@ -118,7 +118,7 @@ export default function DrawerFeature({ anchor }) {
           toggleDrawer(false, event);
         }}
       >
-        <LinksList anchor={anchor} />
+        <DrawerContent anchor={anchor} />
       </Drawer>
     </>
   );
