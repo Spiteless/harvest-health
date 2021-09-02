@@ -46,27 +46,48 @@ const useStyles = makeStyles(theme => ({
 
 export default function NewsletterFeature() {
   const sx = useStyles();
-  const [state, setState] = useState({
+  const [formState, setFormState] = useState({
     email: '',
     markatingConsent: false,
   });
 
   const handleInput = e => {
     const { name, value, type, checked } = e.target;
-    const newState = { ...state };
+    const newState = { ...formState };
     newState[name] = type === 'checkbox' ? checked : value;
     if (typeof name !== 'undefined') {
-      setState(newState);
+      setFormState(newState);
     } else {
       console.log('pass');
     }
     console.log(name, value, type, checked, e, newState);
   };
 
-  const handleSubmit = event => {};
+  const encode = data => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  };
+
+  const handleSubmit = e => {
+    console.log('fired HandleSubmit!', e);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({ 'form-name': e.target.name, ...formState }),
+    })
+      .then(() => alert('Success!'))
+      .catch(error => alert(error));
+  };
+
+  const handleClick = e => {
+    e.stopPropagation();
+    e.preventDefault();
+    handleSubmit(e)
+  }
 
   return (
-    <form action="" name="newLetter">
+    <form action="POST" data-netlify="true" name="newsLetter">
       <Container className={sx.root}>
         <h2>Join Our Newsletter!</h2>
         <FormControl className={sx.form}>
@@ -85,17 +106,16 @@ export default function NewsletterFeature() {
           name="markatingConsent"
           control={
             <Checkbox
-              checked={state.markatingConsent}
+              checked={formState.markatingConsent}
               color="primary"
               required
               name="markatingConsent"
             />
           }
           onClick={handleInput}
-          type="boomBox"
           label="I consent to receiving marketing emails."
         />
-        <Button className={sx.subscribeButton} type="submit">
+        <Button className={sx.subscribeButton} onClick={e=>handleClick(e)}>
           Subscribe
         </Button>
       </Container>
