@@ -9,6 +9,7 @@
     "@material-ui/icons": "^4.11.2",
     "clsx": "^1.1.1",
     "eslint-import-resolver-alias": "^1.1.2",
+    "formik": "^2.2.9",
     "gatsby": "^3.6.2",
     "gatsby-plugin-gatsby-cloud": "^2.6.1",
     "gatsby-plugin-image": "^1.6.0",
