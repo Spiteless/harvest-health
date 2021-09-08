@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
+import * as yup from 'yup';
+import { useFormik } from 'formik';
 import {
   makeStyles,
   Container,
   Checkbox,
   TextField,
+  Typography,
   FormControlLabel,
   FormControl,
   Button,
+  FormHelperText,
+  Box,
 } from '@material-ui/core';
 
 import HeroComponent from '@components/HeroComponent';
@@ -19,7 +24,24 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: 0,
     paddingRight: 0,
     borderRadius: 0,
-    '& h2': { color: theme.palette.common.white, fontSize: '2em' },
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // minHeight: 280,
+    '& h2': {
+      fontSize: '2em',
+      fontWeight: 800,
+      marginBottom: 0,
+    },
+  },
+  container: {
+    marginTop: theme.spacing(12),
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // minHeight: 280
   },
   inner: {
     maxWidth: 960,
@@ -29,6 +51,9 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    '& h2': {
+      color: theme.palette.common.white,
+    },
   },
   formRoot: {
     display: 'flex',
@@ -37,16 +62,15 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     maxWidth: 500,
     color: theme.palette.primary.main,
-    marginTop: theme.spacing(12),
-    '& h2': {
-      color: theme.palette.secondary.main,
-      fontSize: '2em',
-      fontWeight: 800,
-      marginBottom: 0,
-    },
     '& > *': {
-      marginTop: theme.spacing(3),
+      marginTop: theme.spacing(2),
     },
+  },
+  subHeading: {
+    color: theme.palette.secondary.main,
+    fontSize: '2em',
+    fontWeight: 800,
+    marginBottom: 0,
   },
   form: {
     width: 350,
@@ -75,91 +99,143 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ContactUsFeature() {
+const validationSchema = yup.object({
+  firstName: yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Please enter your first name'),
+  lastName: yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Please enter your last name'),
+  email: yup.string().email('Please enter a valid email').required('Please enter an email address'),
+  question: yup.string().max(500, 'This field is limited to 500 characters').required('What would you like to ask'),
+});
+
+export default function ContactUsFeature({ formName }) {
+  const [formOrThanks, setFormOrThanks] = useState(true);
   const sx = useStyles();
-  const [state, setState] = useState({
-    email: '',
-    firstName: '',
-    lastName: '',
-    questions: '',
-    markatingConsent: false,
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      firstName: '',
+      lastName: '',
+      question: '',
+    },
+    onSubmit: values => {
+      handleSubmit(values);
+    },
+    validationSchema: validationSchema,
   });
 
-  const handleInput = e => {
-    const { name, value, type, checked } = e.target;
-    const newState = { ...state };
-    newState[name] = type === 'checkbox' ? checked : value;
-    if (typeof name !== 'undefined') {
-      setState(newState);
-    } else {
-      console.log('pass');
-    }
-    console.log(name, value, type, checked, e, newState);
+  const handleSubmit = values => {
+    setFormOrThanks(false)
+    const options = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({ 'form-name': { formName }, ...values }),
+    };
+    fetch('/', options)
+      .then(res => true)
+      .catch(error => console.log('Error.', error));
   };
 
-  const handleSubmit = event => {};
+  const encode = data => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  };
 
-  return (
-    <div className={sx.root}>
-      <HeroComponent height={185} heroImage={bannerImg}>
-        <div className={sx.inner}>
-          <h2>Contact Us</h2>
+  const Form = (
+    <Box>
+      <form
+        name={formName}
+        // action="/thanks"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        onSubmit={e => formik.handleSubmit(e)}
+      >
+        <input type="hidden" name="form-name" value={formName} />
+        <div hidden>
+          <label>Don't fill this out: </label>
+          <input type="hidden" name="bot-field" onChange={formik.handelChange} />
         </div>
-      </HeroComponent>
-      <form action="" name="contactUs">
         <Container className={sx.formRoot}>
-          <h2 className={sx.noTopMargin}>Ask Megan</h2>
           <div className={sx.singleRow}>
-            <FormControl
-              className={sx.form}
-              style={{ width: 175, paddingRight: 8 }}
-            >
+            <FormControl className={sx.form} style={{ width: 175, paddingRight: 8 }}>
               <TextField
-                required
                 label="First Name"
+                value={formik.values.firstName}
                 variant="outlined"
                 name="firstName"
-                onChange={handleInput}
+                error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                onChange={formik.handleChange}
               />
+              <FormHelperText style={{ display: 'flex', justifyContent: 'center' }}>
+                {(formik.touched.firstName && formik.errors.firstName) || ' '}
+              </FormHelperText>
             </FormControl>
-            <FormControl
-              className={sx.form}
-              style={{ width: 175, paddingLeft: 8 }}
-            >
+            <FormControl className={sx.form} style={{ width: 175, paddingLeft: 8 }}>
               <TextField
-                required
                 label="Last Name"
+                value={formik.values.lastName}
                 variant="outlined"
                 name="lastName"
-                onChange={handleInput}
+                error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+                onChange={formik.handleChange}
               />
+              <FormHelperText style={{ display: 'flex', justifyContent: 'center' }}>
+                {(formik.touched.lastName && formik.errors.lastName) || ' '}
+              </FormHelperText>
             </FormControl>
           </div>
           <FormControl className={sx.form}>
             <TextField
-              required
               label="Email"
               variant="outlined"
+              value={formik.values.email}
               name="email"
-              onChange={handleInput}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              onChange={formik.handleChange}
             />
+            <FormHelperText style={{ display: 'flex', justifyContent: 'center' }}>
+              {(formik.touched.email && formik.errors.email) || ' '}
+            </FormHelperText>
           </FormControl>
           <FormControl className={sx.form}>
             <TextField
-              required
               multiline
               rows={4}
               label="Questions"
               variant="outlined"
-              name="questions"
-              onChange={handleInput}
+              name="question"
+              onChange={formik.handleChange}
+              error={formik.touched.question && Boolean(formik.errors.question)}
             />
+            <FormHelperText style={{ display: 'flex', justifyContent: 'center' }}>
+              {(formik.touched.question && formik.errors.question) || ' '}
+            </FormHelperText>
           </FormControl>
           <Button className={sx.subscribeButton} type="submit">
             Submit
           </Button>
         </Container>
       </form>
-    </div>
+    </Box>
+  );
+
+  return (
+    <Box className={sx.root} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+      <HeroComponent height={185} heroImage={bannerImg}>
+        <div className={sx.inner}>
+          <Typography variant="h2" color="secondary">
+            Contact Us
+          </Typography>
+        </div>
+      </HeroComponent>
+      <Box className={sx.container}>
+        <Typography variant="h2" color="secondary" className={sx.noTopMargin}
+          
+        >
+          {formOrThanks ? "Ask Megan" : "We'll be in touch!"}
+        </Typography>
+        {formOrThanks && Form}
+      </Box>
+    </Box>
   );
 }

@@ -6,7 +6,7 @@ import ContactUsFeature from '@features/ContactUsFeature';
 export default function ContactUsPage() {
   return (
     <Container style={{ padding: 0}}>
-      <ContactUsFeature />
+      <ContactUsFeature formName="contactUs" />
     </Container>
   );
 }

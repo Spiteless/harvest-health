@@ -47,7 +47,7 @@ export default function HeroFeature() {
     <Container style={{ margin: 0, padding: 0 }}>
       <HeroComponent heroImage={banner}>
         <img src={imageOverlay} alt="" placeholder="blurred" />
-        <Button className={sx.buyButton} size="large">
+        <Button className={sx.buyButton} size="large" tabindex="-1" placeholder="NoTabIndex">
           <Link to="/questionairre">Start Now!</Link>
         </Button>
       </HeroComponent>
