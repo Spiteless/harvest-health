@@ -2,6 +2,6 @@
   "arrowParens": "avoid",
   "semi": true,
   "trailingComma": "all",
-  "singleQuote": true,yarn add -D eslint-config-prettier
+  "singleQuote": true,
   "printWidth": 120
 }
