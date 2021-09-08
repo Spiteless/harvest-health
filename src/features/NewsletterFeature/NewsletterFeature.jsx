@@ -79,11 +79,12 @@ export default function NewsletterFeature() {
   const handleSend = values => {
     const toSubmit = encode(values);
     console.log('fired HandleSubmit!', toSubmit);
-    fetch('/', {
+    const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': 'NewsletterSubscribe', ...values }),
-    })
+      body: encode({ 'form-name': 'newsLetter', ...values }),
+    };
+    fetch('/', options)
       .then(res => console.log('Success! Form submitted!', res))
       .catch(error => console.log('Error.', error));
   };
@@ -96,12 +97,18 @@ export default function NewsletterFeature() {
 
   return (
     <form
-      onSubmit={formik.handleSubmit}
-      action="POST"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      name="newsLetter"
+    name="newsLetter"
+    method="post"
+    // action="/thanks"
+    data-netlify="true"
+    data-netlify-honeypot="bot-field"
+    onSubmit={e => formik.handleSubmit(e)}
     >
+      <input type="hidden" name="form-name" value="newsLetter" />
+      <div hidden>
+        <label>Don't fill this out: </label>
+        <input type="hidden" name="bot-field" onChange={formik.handelChange}/>
+      </div>
       <Container className={sx.root}>
         <h2>Join Our Newsletter!</h2>
         <FormControl className={sx.form}>
@@ -130,7 +137,8 @@ export default function NewsletterFeature() {
                 color="primary"
                 classes={
                   formik.touched.email &&
-                  Boolean(formik.errors.email) && { // Boolean(formik.errors.marketingConsent) && // formik.touched.markatingConsent &&
+                  Boolean(formik.errors.email) && {
+                    // Boolean(formik.errors.marketingConsent) && // formik.touched.markatingConsent &&
                     root: sx.error,
                   }
                 }
