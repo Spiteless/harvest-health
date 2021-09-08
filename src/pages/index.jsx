@@ -19,7 +19,7 @@ const IndexPage = () => (
     <HeroFeature />
     <TextFeature />
     <ImageFeature />
-    <NewsletterFeature />
+    <NewsletterFeature formName="newsLetter" />
   </>
 );
 
