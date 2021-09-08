@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import * as yup from 'yup';
+import { useFormik } from 'formik';
 import {
   makeStyles,
   Container,
@@ -10,8 +12,6 @@ import {
   Button,
   Box,
 } from '@material-ui/core';
-import * as yup from 'yup';
-import { useFormik } from 'formik';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,15 +22,12 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 500,
     color: theme.palette.primary.main,
     marginTop: theme.spacing(10),
-    '& h2': {
-      color: theme.palette.primary.main,
-      fontSize: '2em',
-      fontWeight: 800,
-      marginBottom: 0,
-    },
-    // '& > *': {
-    //   marginTop: theme.spacing(3),
-    // },
+  },
+  subHeading: {
+    color: theme.palette.primary.main,
+    fontSize: '2em',
+    fontWeight: 800,
+    marginBottom: theme.spacing(1),
   },
   form: {
     width: 350,
@@ -52,40 +49,34 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const validationSchema = yup.object({
-  email: yup
-    .string()
-    .email('Please enter a valid email')
-    .required('Please enter an email address'),
-  markatingConsent: yup
-    .bool()
-    .oneOf([true], 'Please check to accept marketing emails.')
-    .nullable(),
+  email: yup.string().email('Please enter a valid email').required('Please enter an email address'),
+  markatingConsent: yup.bool().oneOf([true], 'Please check to accept marketing emails.').nullable(),
 });
 
-export default function NewsletterFeature() {
+export default function NewsletterFeature({ formName }) {
+  const [formOrThanks, setFormOrThanks] = useState(true);
+  const sx = useStyles();
+
   const formik = useFormik({
     initialValues: {
       email: '',
       markatingConsent: null,
     },
     onSubmit: values => {
-      console.log(values);
-      handleSend(values);
+      handleSubmit(values);
     },
     validationSchema: validationSchema,
   });
-  const sx = useStyles();
 
-  const handleSend = values => {
-    const toSubmit = encode(values);
-    console.log('fired HandleSubmit!', toSubmit);
+  const handleSubmit = values => {
+    setFormOrThanks(false)
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': 'newsLetter', ...values }),
+      body: encode({ 'form-name': { formName }, ...values }),
     };
     fetch('/', options)
-      .then(res => console.log('Success! Form submitted!', res))
+      .then(res => true)
       .catch(error => console.log('Error.', error));
   };
 
@@ -95,75 +86,76 @@ export default function NewsletterFeature() {
       .join('&');
   };
 
-  return (
+  const Form = (
     <form
-    name="newsLetter"
-    method="post"
-    // action="/thanks"
-    data-netlify="true"
-    data-netlify-honeypot="bot-field"
-    onSubmit={e => formik.handleSubmit(e)}
-    >
-      <input type="hidden" name="form-name" value="newsLetter" />
-      <div hidden>
-        <label>Don't fill this out: </label>
-        <input type="hidden" name="bot-field" onChange={formik.handelChange}/>
-      </div>
-      <Container className={sx.root}>
-        <h2>Join Our Newsletter!</h2>
-        <FormControl className={sx.form}>
-          <TextField
-            // required
-            label="Email"
-            variant="outlined"
-            name="email"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-          >
-            Blah blah
-          </TextField>
-          <FormHelperText style={{ display: 'flex', justifyContent: 'center' }}>
-            {(formik.touched.email && formik.errors.email) || ' '}
-          </FormHelperText>
-        </FormControl>
-        <Box display="flex" flexDirection="column" alignItems="center">
-          <FormControlLabel
-            // required
-            name="markatingConsentParent"
-            control={
-              <Checkbox
-                checked={formik.values.markatingConsent}
-                color="primary"
-                classes={
-                  formik.touched.email &&
-                  Boolean(formik.errors.email) && {
-                    // Boolean(formik.errors.marketingConsent) && // formik.touched.markatingConsent &&
-                    root: sx.error,
+        name={formName}
+        // action="/thanks"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        onSubmit={e => formik.handleSubmit(e)}
+      >
+        <input type="hidden" name="form-name" value={formName} />
+        <div hidden>
+          <label>Don't fill this out: </label>
+          <input type="hidden" name="bot-field" onChange={formik.handelChange} />
+        </div>
+        <Container className={sx.root}>
+          <h2 className={sx.subHeading} >Join Our Newsletter!</h2>
+          <FormControl className={sx.form}>
+            <TextField
+              // required
+              label="Email"
+              variant="outlined"
+              name="email"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+            >
+              Blah blah
+            </TextField>
+            <FormHelperText style={{ display: 'flex', justifyContent: 'center' }}>
+              {(formik.touched.email && formik.errors.email) || ' '}
+            </FormHelperText>
+          </FormControl>
+          <Box display="flex" flexDirection="column" alignItems="center">
+            <FormControlLabel
+              name="markatingConsentParent"
+              control={
+                <Checkbox
+                  checked={formik.values.markatingConsent}
+                  color="primary"
+                  classes={
+                    formik.touched.markatingConsent &&
+                    Boolean(formik.errors.markatingConsent) && {
+                      root: sx.error,
+                    }
                   }
-                }
-                // required
-                name="markatingConsent"
-                onChange={formik.handleChange}
-                value={formik.values.markatingConsent}
-                error={
-                  formik.touched.markatingConsent &&
-                  Boolean(formik.errors.marketingConsent)
-                }
-              />
-            }
-            label="I consent to receiving marketing emails."
-          ></FormControlLabel>
-          <FormHelperText style={{ marginTop: -10 }}>
-            {(formik.touched.markatingConsent &&
-              formik.errors.markatingConsent) ||
-              ' '}
-          </FormHelperText>
-        </Box>
-        <Button name="newsLetter" className={sx.subscribeButton} type="submit">
-          Subscribe
-        </Button>
-      </Container>
-    </form>
+                  name="markatingConsent"
+                  onChange={formik.handleChange}
+                  value={formik.values.markatingConsent}
+                  error={formik.touched.markatingConsent && Boolean(formik.errors.marketingConsent)}
+                />
+              }
+              label="I consent to receiving marketing emails."
+            />
+            <FormHelperText style={{ marginTop: -10 }}>
+              {(formik.touched.markatingConsent && formik.errors.markatingConsent) || ' '}
+            </FormHelperText>
+          </Box>
+          <Button className={sx.subscribeButton} type="submit">
+            Subscribe
+          </Button>
+        </Container>
+      </form>
+  )
+
+  const ThankYou = (
+    <h2 className={sx.subHeading} >Thanks for subscribing!!</h2>
+  )
+
+  return (
+    <Box height={274} display="flex" alignItems="center" justifyContent="center">
+      {formOrThanks ? Form : ThankYou}
+    </Box>
   );
 }
