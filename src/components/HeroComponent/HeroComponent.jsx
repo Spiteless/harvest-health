@@ -17,14 +17,14 @@ const useStyles = makeStyles(theme => ({
     width: '100vw',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
-  imageBox: ({ bannerImg, height }) => ({
+  box: ({ bannerImg, height }) => ({
     position: 'relative',
     // backgroundImage: `url(${bannerImg})`,
     background: `white url(${bannerImg})`,
     height,
-    width: '100%',  
+    width: '100%',
     maxWidth: 1624,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -60,12 +60,22 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function HeroComponent({ children, heroImage, height = 350 }) {
+export default function HeroComponent({ children, heroImage, height = 350, classes }) {
   const sx = useStyles({ bannerImg: heroImage, height });
+  const local = {
+    root: sx.root,
+    box: sx.box,
+  };
+
+  if (classes) {
+    Object.keys(classes).map(c => (local.c += ' ' + classes.c));
+  }
+
+  console.log(local);
 
   return (
-    <Card className={sx.root}>
-      <CardContent className={sx.imageBox}>
+    <Card className={local.root}>
+      <CardContent className={`${local.box} `}>
         <div className={sx.absolute}>{children}</div>
       </CardContent>
     </Card>
